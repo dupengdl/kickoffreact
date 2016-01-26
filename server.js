@@ -16,7 +16,9 @@ var hotArray = ['webpack-dev-server/client?http://'+host+':'+port, 'webpack/hot/
 var server = new WebpackDevServer(webpack(config), {
   publicPath: config.output.publicPath,
   hot: true,
-  colors: true,
+  stats: {
+    colors: true
+  },
   historyApiFallback: true
 });
 server.listen(port, host, function (err, result) {
