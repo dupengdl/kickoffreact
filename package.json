@@ -4,21 +4,23 @@
   "description": "react&webpack learning",
   "main": "src/index.js",
   "scripts": {
-    "start": "webpack-dev-server --port=9002 --inline --colors --hot",
-    "build": "webpack --config webpack.config.js -p"
+    "start": "node server.js",
+    "build": "rm -rf static/ && webpack --config webpack.prod.config.js"
   },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/dupengdl/kickoffreact.git"
   },
   "author": "dupengdl",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/dupengdl/kickoffreact/issues"
   },
   "homepage": "https://github.com/dupengdl/kickoffreact#readme",
   "devDependencies": {
     "babel-loader": "^6.2.1",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-react": "^6.3.13",
     "css-loader": "^0.15.0",
     "eslint": "^1.10.3",
     "eslint-loader": "^1.2.0",
@@ -29,8 +31,8 @@
     "sass-loader": "^3.1.2",
     "style-loader": "^0.12.4",
     "url-loader": "^0.5.7",
-    "webpack": "^1.5.1",
-    "webpack-dev-server": "1.6.4"
+    "webpack": "^1.12.12",
+    "webpack-dev-server": "^1.6.4"
   },
   "dependencies": {
     "normalize.css": "^3.0.3",

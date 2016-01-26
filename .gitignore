@@ -1,7 +1,6 @@
 # Files to ignore
 *.DS_store
 npm-debug.log
-.babelrc
 
 
 # Folders to ignore

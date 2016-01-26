@@ -1,18 +1,22 @@
-var path = require('path');
 var webpack = require('webpack');
+var path = require('path');
 
 module.exports = {
-  devtool: 'eval',
   entry: {
     'index': './src/js/index.js'
   },
   output: {
-    path: path.join(__dirname, 'static'),
-    filename: '[name].js',
+    path: './static/',
+    filename: '[name].[hash:8].js',
     publicPath: '/static/'
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
+      }
+    }),
+    new webpack.NoErrorsPlugin()
   ],
   module: {
     preLoaders: [
@@ -26,18 +30,15 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        loader: 'style!css!sass'
+        loader: 'style!css!sass?sourceMap'
       },
       {
         test: /\.(jpe?g|png|gif|svg)$/i,
-        loaders: [
-          //'image?{bypassOnDebug: true, progressive:true, optimizationLevel: 3, pngquant:{quality: "65-80"}}',
-          'url?limit=10000&name=images/[name].[ext]'
-        ]
+        loader: 'url?limit=1000&name=images/[name].[hash:8].[ext]'
       },
       {
         test: /\.(woff|eot|ttf)$/i,
-        loader: 'url?limit=10000&name=fonts/[name].[ext]'
+        loader: 'url?limit=10000&name=fonts/[name].[hash:8].[ext]'
       }
     ]
   },
