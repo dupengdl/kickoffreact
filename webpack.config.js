@@ -22,7 +22,7 @@ module.exports = {
     loaders: [
       {
         test: /\.jsx?$/,
-        loader: 'react-hot!babel',
+        loader: 'babel',
         exclude: /node_modules/
       },
       {
