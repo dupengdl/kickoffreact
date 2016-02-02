@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "lint": "eslint src",
-    "build": "rm -rf static/ && webpack --config webpack.prod.config.js"
+    "build": "rm -rf static/ && NODE_ENV=production webpack --progress"
   },
   "repository": {
     "type": "git",

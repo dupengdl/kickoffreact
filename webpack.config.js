@@ -1,8 +1,9 @@
 var path = require('path');
 var webpack = require('webpack');
 var autoprefixer = require('autoprefixer');
+var env = process.env.NODE_ENV;
 
-module.exports = {
+var config = {
   devtool: 'eval',
   entry: {
     'index': './src/js/index.js'
@@ -33,12 +34,12 @@ module.exports = {
         test: /\.(jpe?g|png|gif|svg)$/i,
         loaders: [
           //'image?{bypassOnDebug: true, progressive:true, optimizationLevel: 3, pngquant:{quality: "65-80"}}',
-          'url?limit=10000&name=images/[name].[ext]'
+          'url?limit=1000&name=images/[name].[hash:8].[ext]'
         ]
       },
       {
         test: /\.(woff|eot|ttf)$/i,
-        loader: 'url?limit=10000&name=fonts/[name].[ext]'
+        loader: 'url?limit=10000&name=fonts/[name].[hash:8].[ext]'
       }
     ]
   },
@@ -50,3 +51,22 @@ module.exports = {
     extensions: ['', '.js', '.jsx']
   }
 };
+
+/* production config */
+if (env === 'production') {
+  config.output = {
+    path: './static/',
+        filename: '[name].[hash:8].js',
+        publicPath: '/static/'
+  };
+  config.plugins = [
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
+      }
+    }),
+    new webpack.NoErrorsPlugin()
+  ];
+}
+
+module.exports = config;
