@@ -34,7 +34,7 @@ var config = {
         test: /\.(jpe?g|png|gif|svg)$/i,
         loaders: [
           //'image?{bypassOnDebug: true, progressive:true, optimizationLevel: 3, pngquant:{quality: "65-80"}}',
-          'url?limit=1000&name=images/[name].[hash:8].[ext]'
+          'url?limit=10000&name=images/[name].[hash:8].[ext]'
         ]
       },
       {
