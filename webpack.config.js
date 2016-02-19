@@ -34,12 +34,12 @@ var config = {
         test: /\.(jpe?g|png|gif|svg)$/i,
         loaders: [
           //'image?{bypassOnDebug: true, progressive:true, optimizationLevel: 3, pngquant:{quality: "65-80"}}',
-          'url?limit=10000&name=images/[name].[hash:8].[ext]'
+          'url?limit=10000&name=images/[name].[chunkhash:8].[ext]'
         ]
       },
       {
         test: /\.(woff|eot|ttf)$/i,
-        loader: 'url?limit=10000&name=fonts/[name].[hash:8].[ext]'
+        loader: 'url?limit=10000&name=fonts/[name].[chunkhash:8].[ext]'
       }
     ]
   },
@@ -56,7 +56,7 @@ var config = {
 if (env === 'production') {
   config.output = {
     path: './static/',
-    filename: '[name].[hash:8].js',
+    filename: '[name].[chunkhash:8].js',
     publicPath: '/static/'
   };
   config.plugins = [
