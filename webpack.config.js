@@ -56,8 +56,8 @@ var config = {
 if (env === 'production') {
   config.output = {
     path: './static/',
-        filename: '[name].[hash:8].js',
-        publicPath: '/static/'
+    filename: '[name].[hash:8].js',
+    publicPath: '/static/'
   };
   config.plugins = [
     new webpack.optimize.UglifyJsPlugin({
