@@ -1,7 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
 var autoprefixer = require('autoprefixer');
-var _ = require('lodash');
 var env = process.env.NODE_ENV;
 
 var config = {
@@ -14,9 +13,6 @@ var config = {
     filename: '[name].js',
     publicPath: '/static/'
   },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin()
-  ],
   module: {
     preLoaders: [
       {test: /\.jsx?$/, loader: 'eslint-loader', exclude: /node_modules/}
@@ -55,7 +51,7 @@ var config = {
 
 /* production config */
 if (env === 'production') {
-  config = _.extend(config, {
+  config = Object.assign(config, {
     devtool: '#',
     output: {
       path: './static/',
@@ -69,6 +65,12 @@ if (env === 'production') {
         }
       }),
       new webpack.NoErrorsPlugin()
+    ]
+  });
+} else {
+  config = Object.assign(config, {
+    plugins: [
+      new webpack.HotModuleReplacementPlugin()
     ]
   });
 }
